@@ -6,7 +6,7 @@
 /*   By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 11:11:01 by eralonso          #+#    #+#             */
-/*   Updated: 2023/07/07 12:51:12 by eralonso         ###   ########.fr       */
+/*   Updated: 2023/07/07 13:53:33 by eralonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 class ClapTrap
 {
-	private:
+	protected:
 		std::string		_name;
 		unsigned int	_hPts;
 		unsigned int	_ePts;

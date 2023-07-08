@@ -6,7 +6,7 @@
 /*   By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 11:11:01 by eralonso          #+#    #+#             */
-/*   Updated: 2023/07/07 12:51:12 by eralonso         ###   ########.fr       */
+/*   Updated: 2023/07/08 13:17:22 by eralonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,18 @@ class ClapTrap
 		unsigned int	_aDmg;
 	public:
 		ClapTrap( void );
-		ClapTrap( ClapTrap& clap );
+		ClapTrap( const ClapTrap& clap );
 		ClapTrap( std::string name );
 		~ClapTrap( void );
-		ClapTrap&		operator=( ClapTrap& clap );
+		ClapTrap&		operator=( const ClapTrap& clap );
 		void			attack( const std::string& target );
 		void			takeDamage( unsigned int amount );
 		void			beRepaired( unsigned int amount );
 		// Getters
-		std::string		getName( void );
-		unsigned int	getHPts( void );
-		unsigned int	getEPts( void );
-		unsigned int	getADmg( void );
+		std::string		getName( void ) const;
+		unsigned int	getHPts( void ) const;
+		unsigned int	getEPts( void ) const;
+		unsigned int	getADmg( void ) const;
 		// Setters
 		void			setName( std::string name );
 		void			setHPts( unsigned int hPts );

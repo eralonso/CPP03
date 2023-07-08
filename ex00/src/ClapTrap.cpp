@@ -6,7 +6,7 @@
 /*   By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 11:10:59 by eralonso          #+#    #+#             */
-/*   Updated: 2023/07/07 13:36:28 by eralonso         ###   ########.fr       */
+/*   Updated: 2023/07/08 13:27:57 by eralonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ ClapTrap::ClapTrap( void ): _name( NULL ), _hPts( 10 ), _ePts( 10 ), _aDmg( 0 )
 	std::cout << "ClapTrap: Default constructor called" << std::endl;
 }
 
-ClapTrap::ClapTrap( ClapTrap& clap )
+ClapTrap::ClapTrap( const ClapTrap& clap )
 {
 	std::cout << "ClapTrap: Copy constructor called" << std::endl;
 	*this = clap;
@@ -32,12 +32,12 @@ ClapTrap::ClapTrap( std::string name ): _name( name ), _hPts( 10 ), \
 
 ClapTrap::~ClapTrap( void )
 {
-	std::cout << "ClapTrap: Destructor called" << std::endl;
+	std::cout << "ClapTrap -> " << this->_name << ": Destructor called" << std::endl;
 }
 
-ClapTrap&	ClapTrap::operator=( ClapTrap& clap )
+ClapTrap&	ClapTrap::operator=( const ClapTrap& clap )
 {
-	std::cout << "Assignation operator called" << std::endl;
+	std::cout << "ClapTrap: Assignation operator called" << std::endl;
 	this->_name = clap.getName();
 	this->_hPts = clap.getHPts();
 	this->_ePts = clap.getEPts();
@@ -101,22 +101,22 @@ void	ClapTrap::takeDamage( unsigned int amount )
 	std::cout << std::endl;
 }
 
-std::string	ClapTrap::getName( void )
+std::string	ClapTrap::getName( void ) const
 {
 	return ( this->_name );
 }
 
-unsigned int	ClapTrap::getHPts( void )
+unsigned int	ClapTrap::getHPts( void ) const
 {
 	return ( this->_hPts );
 }
 
-unsigned int	ClapTrap::getEPts( void )
+unsigned int	ClapTrap::getEPts( void ) const
 {
 	return ( this->_ePts );
 }
 
-unsigned int	ClapTrap::getADmg( void )
+unsigned int	ClapTrap::getADmg( void ) const
 {
 	return ( this->_aDmg );
 }

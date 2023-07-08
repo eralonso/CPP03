@@ -15,17 +15,17 @@
 
 ScavTrap::ScavTrap( void ): ClapTrap("unnamed", 100, 50, 20)
 {
-	std::cout << "ScavTrap: Default constructor called" << std::endl;
+	std::cout << "ScavTrap -> " << this->_name << ": Default constructor called" << std::endl;
 }
 
 ScavTrap::ScavTrap( std::string name ): ClapTrap(name, 100, 50, 20)
 {
-	std::cout << "ScavTrap: Default constructor called" << std::endl;
+	std::cout << "ScavTrap -> " << this->_name << ": Default constructor called" << std::endl;
 }
 
 ScavTrap::ScavTrap( const ScavTrap& scav )
 {
-	std::cout << "ScavTrap: Copy constructor called" << std::endl;
+	std::cout << "ScavTrap -> " << this->_name << ": Copy constructor called" << std::endl;
 	*this = scav;
 }
 
@@ -36,7 +36,7 @@ ScavTrap::~ScavTrap( void )
 
 ScavTrap&	ScavTrap::operator=( const ScavTrap& scav )
 {
-	std::cout << "SacvTrap: Assignation operator called" << std::endl;
+	std::cout << "SacvTrap -> " << this->_name << ": Assignation operator called" << std::endl;
 	this->_name = scav.getName();
 	this->_hPts = scav.getHPts();
 	this->_ePts = scav.getEPts();

@@ -6,7 +6,7 @@
 /*   By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 12:37:03 by eralonso          #+#    #+#             */
-/*   Updated: 2023/07/07 13:41:39 by eralonso         ###   ########.fr       */
+/*   Updated: 2023/07/08 13:15:23 by eralonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,41 +22,47 @@ void	attacking( ClapTrap& clap1, ClapTrap& clap2 )
 	if ( canAttack == true )
 		clap2.takeDamage( clap1.getADmg() );
 }
+
+void	test( ClapTrap& one, ClapTrap& two )
+{
+	attacking( one, two );
+	attacking( two, one );
+	one.setADmg( 1 );
+	attacking( one, two );
+	two.setADmg( 1 );
+	attacking( two, one );
+	one.setADmg( 8 );
+	attacking( one, two );
+	two.setADmg( 6 );
+	one.beRepaired( 100 );
+	two.beRepaired( 100 );
+	attacking( two, one );
+	attacking( one, two );
+	attacking( two, one );
+	one.setADmg( 1 );
+	two.setADmg( 1 );
+	attacking( one, two );
+	attacking( two, one );
+	attacking( one, two );
+	attacking( two, one );
+	attacking( one, two );
+	attacking( two, one );
+	attacking( one, two );
+	attacking( two, one );
+	attacking( one, two );
+	attacking( two, one );
+	attacking( one, two );
+	attacking( two, one );
+	std::cout << "one -> " << one << std::endl;
+	std::cout << "two -> " << two << std::endl;
+}
+
 int	main( void )
 {
 	ClapTrap	clap1( "clap1" );
 	ClapTrap	clap2( clap1 );
 
 	clap2.setName( "clap2" );
-	attacking( clap1, clap2 );
-	attacking( clap2, clap1 );
-	clap1.setADmg( 1 );
-	attacking( clap1, clap2 );
-	clap2.setADmg( 1 );
-	attacking( clap2, clap1 );
-	clap1.setADmg( 8 );
-	attacking( clap1, clap2 );
-	clap2.setADmg( 6 );
-	clap1.beRepaired( 100 );
-	clap2.beRepaired( 100 );
-	attacking( clap2, clap1 );
-	attacking( clap1, clap2 );
-	attacking( clap2, clap1 );
-	clap1.setADmg( 1 );
-	clap2.setADmg( 1 );
-	attacking( clap1, clap2 );
-	attacking( clap2, clap1 );
-	attacking( clap1, clap2 );
-	attacking( clap2, clap1 );
-	attacking( clap1, clap2 );
-	attacking( clap2, clap1 );
-	attacking( clap1, clap2 );
-	attacking( clap2, clap1 );
-	attacking( clap1, clap2 );
-	attacking( clap2, clap1 );
-	attacking( clap1, clap2 );
-	attacking( clap2, clap1 );
-	std::cout << "clap1 -> " << clap1 << std::endl;
-	std::cout << "clap2 -> " << clap2 << std::endl;
+	test(clap1, clap2);
 	return ( 0 );
 }

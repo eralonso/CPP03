@@ -6,7 +6,7 @@
 /*   By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 12:37:03 by eralonso          #+#    #+#             */
-/*   Updated: 2023/07/08 15:03:32 by eralonso         ###   ########.fr       */
+/*   Updated: 2023/07/08 15:04:28 by eralonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 #include	<iomanip>
 
 #define FILL	40
-#define CLAP	0
-#define SCAV	1
 
 void	attacking( ClapTrap& clap1, ClapTrap& clap2 )
 {

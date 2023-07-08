@@ -6,7 +6,7 @@
 /*   By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 11:10:59 by eralonso          #+#    #+#             */
-/*   Updated: 2023/07/08 16:39:08 by eralonso         ###   ########.fr       */
+/*   Updated: 2023/07/08 17:54:59 by eralonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ ClapTrap::~ClapTrap( void )
 ClapTrap&	ClapTrap::operator=( const ClapTrap& clap )
 {
 	std::cout << "Assignation operator called" << std::endl;
-	this->_name = clap.getName();
-	this->_hPts = clap.getHPts();
-	this->_ePts = clap.getEPts();
-	this->_aDmg = clap.getADmg();
+	this->setName( clap.getName() );
+	this->setHPts( clap.getHPts() );
+	this->setEPts( clap.getEPts() );
+	this->setADmg( clap.getADmg() );
 	return ( *this );
 }
 
@@ -55,34 +55,34 @@ void	ClapTrap::attack( const std::string& target )
 {
 	unsigned int	damage;
 
-	std::cout << "ClapTrap -> " << this->_name << ": ";
-	if ( this->_ePts < 1 )
+	std::cout << "ClapTrap -> " << this->getName() << ": ";
+	if ( this->getEPts() < 1 )
 		std::cout << "Not enough energy points to attack, at least 1.";
-	else if ( this->_hPts < 1 )
+	else if ( this->getHPts() < 1 )
 		std::cout << "Not enough hit points to attack, at least 1.";
 	else
 	{
-		damage = this->_aDmg;
+		damage = this->getADmg();
 		std::cout << "Attacks " << target \
 			<< ", causing " << damage << " points damage!";
-		this->_ePts--;
+		this->setEPts( this->getEPts() - 1 );
 	}
 	std::cout << std::endl;
 }
 
 void	ClapTrap::beRepaired( unsigned int amount )
 {
-	std::cout << "ClapTrap -> " << this->_name << ": ";
-	if ( this->_ePts < 1 )
+	std::cout << "ClapTrap -> " << this->getName() << ": ";
+	if ( this->getEPts() < 1 )
 		std::cout << "Not enough energy points to reapir, at least 1.";
-	else if ( this->_hPts < 1 )
+	else if ( this->getHPts() < 1 )
 		std::cout << "Not enough hit points to attack, at least 1.";
-	else if ( amount + this->_hPts >= this->_hPts )
+	else if ( amount + this->getHPts() >= this->getHPts() )
 	{
 		std::cout << "Be repaired with " << amount << " hit points. Hit points remaining == ";
-		this->_hPts += amount;
-		this->_ePts--;
-		std::cout << this->_hPts;
+		this->setHPts( this->getHPts() + amount );
+		this->setEPts( this->getEPts() - 1 );
+		std::cout << this->getHPts();
 	}
 	else
 		std::cout << "Too many hit points to be repaired";
@@ -91,14 +91,14 @@ void	ClapTrap::beRepaired( unsigned int amount )
 
 void	ClapTrap::takeDamage( unsigned int amount )
 {
-	std::cout << "ClapTrap -> " << this->_name << ": ";
-	if ( this->_hPts < 1 )
-		std::cout << "Cannot take more damage. Hit points == " << this->_hPts;
-	else if ( this->_hPts  - amount <= this->_hPts )
+	std::cout << "ClapTrap -> " << this->getName() << ": ";
+	if ( this->getHPts() < 1 )
+		std::cout << "Cannot take more damage. Hit points == " << this->getHPts();
+	else if ( this->getHPts()  - amount <= this->getHPts() )
 	{
 		std::cout << "Take " << amount << " damage. Hit points remaining == ";
-		this->_hPts -= amount;
-		std::cout << this->_hPts;
+		this->setHPts( this->getHPts() - amount );
+		std::cout << this->getHPts();
 	}
 	else
 		std::cout << "Too many hit points to take damage";		

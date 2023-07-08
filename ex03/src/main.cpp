@@ -6,7 +6,7 @@
 /*   By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 12:37:03 by eralonso          #+#    #+#             */
-/*   Updated: 2023/07/08 16:26:14 by eralonso         ###   ########.fr       */
+/*   Updated: 2023/07/08 17:43:44 by eralonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include	"ClapTrap.hpp"
 #include	"ScavTrap.hpp"
 #include	"FragTrap.hpp"
+#include	"DiamondTrap.hpp"
 
 #define FILL	40
 
@@ -102,28 +103,52 @@ void	test_frag( FragTrap& one, FragTrap& two )
 	two.highFivesGuys();
 }
 
+void	test_diamond( DiamondTrap& one, DiamondTrap& two )
+{
+	std::cout << "\none -> " << one << std::endl;
+	std::cout << "two -> " << two << "\n" << std::endl;
+	test_clap( one, two, false );
+	std::cout << std::endl;
+	one.whoAmI();
+	two.whoAmI();
+}
+
 int	main( void )
 {
+	print_next_test( "ClapTrap test" );
 	ClapTrap	clap1( "clap1" );
 	ClapTrap	clap2( clap1 );
-	ScavTrap	scav1;
-	ScavTrap	scav2( "scav2" );
-	FragTrap	frag1( "frag1" );
-	FragTrap	frag2;
 
 	clap2.setName( "clap2" );
-	print_next_test( "ClapTrap test" );
 	test_clap( clap1, clap2, true );
 
+
+
 	print_next_test( "ScravTrap test" );
+	ScavTrap	scav1;
+	ScavTrap	scav2( "scav2" );
+
 	scav1 = scav2;
 	scav1.setName( "scav1" );
 	test_scav( scav1, scav2 );
 
+
+
 	print_next_test( "FragTrap test" );
+	FragTrap	frag1( "frag1" );
+	FragTrap	frag2;
+
 	frag2 = frag1;
 	frag2.setName( "frag2" );
 	test_frag( frag1, frag2 );
+
+
+
+	print_next_test( "DiamondTrap test" );
+	DiamondTrap	diamond1( "diamond1" );
+	DiamondTrap	diamond2( "diamond2" );
+
+	test_diamond( diamond1, diamond2 );
 
 	std::cout << std::endl;
 	return ( 0 );

@@ -6,14 +6,14 @@
 /*   By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 11:10:59 by eralonso          #+#    #+#             */
-/*   Updated: 2023/07/08 13:27:57 by eralonso         ###   ########.fr       */
+/*   Updated: 2023/07/08 16:24:06 by eralonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"ClapTrap.hpp"
 #include	<iostream>
 
-ClapTrap::ClapTrap( void ): _name( NULL ), _hPts( 10 ), _ePts( 10 ), _aDmg( 0 )
+ClapTrap::ClapTrap( void ): _name( "Unnamed" ), _hPts( 10 ), _ePts( 10 ), _aDmg( 0 )
 {
 	std::cout << "ClapTrap: Default constructor called" << std::endl;
 }

@@ -13,34 +13,34 @@
 #include	<iostream>
 #include	"ScavTrap.hpp"
 
-ScavTrap::ScavTrap( void ): ClapTrap("unnamed", 100, 50, 20)
+ScavTrap::ScavTrap( void ): ClapTrap( "Unnamed", ScavTrap::def_hpts, ScavTrap::def_epts, ScavTrap::def_admg )
 {
-	std::cout << "ScavTrap: Default constructor called" << std::endl;
+	std::cout << "ScavTrap -> " << this->getName() << ": Default constructor called" << std::endl;
 }
 
-ScavTrap::ScavTrap( std::string name ): ClapTrap(name, 100, 50, 20)
+ScavTrap::ScavTrap( std::string name ): ClapTrap( name, ScavTrap::def_hpts, ScavTrap::def_epts, ScavTrap::def_admg )
 {
-	std::cout << "ScavTrap: Default constructor called" << std::endl;
+	std::cout << "ScavTrap -> " << this->getName() << ": String constructor called" << std::endl;
 }
 
-ScavTrap::ScavTrap( const ScavTrap& scav )
+ScavTrap::ScavTrap( const ScavTrap& scav ): ClapTrap( scav )
 {
-	std::cout << "ScavTrap: Copy constructor called" << std::endl;
+	std::cout << "ScavTrap -> " << this->getName() << ": Copy constructor called" << std::endl;
 	*this = scav;
 }
 
 ScavTrap::~ScavTrap( void )
 {
-	std::cout << "ScavTrap -> " << this->_name << ": Default destructor called" << std::endl;
+	std::cout << "ScavTrap -> " << this->getName() << ": Destructor called" << std::endl;
 }
 
 ScavTrap&	ScavTrap::operator=( const ScavTrap& scav )
 {
-	std::cout << "SacvTrap: Assignation operator called" << std::endl;
-	this->_name = scav.getName();
-	this->_hPts = scav.getHPts();
-	this->_ePts = scav.getEPts();
-	this->_aDmg = scav.getADmg();
+	std::cout << "SacvTrap -> " << scav.getName() << ": Assignation operator called" << std::endl;
+	this->setName( scav.getName() );
+	this->setHPts( scav.getHPts() );
+	this->setEPts( scav.getEPts() );
+	this->setADmg( scav.getADmg() );
 	return ( *this );
 }
 
@@ -48,26 +48,24 @@ void	ScavTrap::attack( const std::string& target )
 {
 	unsigned int	damage;
 
-	std::cout << "ScavTrap: " << this->_name;
-	if ( this->_ePts < 1 )
-		std::cout << " not enough energy points to attack, at least 1.";
-	else if ( this->_hPts < 1 )
-		std::cout << " not enough hit points to attack, at least 1.";
+	std::cout << "ScavTrap -> " << this->getName() << ": ";
+	if ( this->getEPts() < 1 )
+		std::cout << "Not enough energy points to attack, at least 1.";
+	else if ( this->getHPts() < 1 )
+		std::cout << "Not enough hit points to attack, at least 1.";
 	else
 	{
-		damage = this->_aDmg;
-		if (damage > 10)
-			damage = 10;
-		std::cout << " hits " << target \
+		damage = this->getADmg();
+		std::cout << "Hits " << target \
 			<< ", causing " << damage << " points damage!";
-		this->_ePts--;
+		this->setEPts( this->getEPts() - 1 );
 	}
 	std::cout << std::endl;
 }
 
 void	ScavTrap::guardGate( void )
 {
-	std::cout << "ScavTrap: " << this->_name << " is now in Gate keeper mode" << std::endl;
+	std::cout << "ScavTrap -> " << this->getName() << ": Is now in Gate keeper mode" << std::endl;
 }
 
 std::ostream&	operator<<( std::ostream& out, ScavTrap& scav )

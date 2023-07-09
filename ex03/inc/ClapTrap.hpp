@@ -6,7 +6,7 @@
 /*   By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 11:11:01 by eralonso          #+#    #+#             */
-/*   Updated: 2023/07/08 17:39:37 by eralonso         ###   ########.fr       */
+/*   Updated: 2023/07/09 14:03:29 by eralonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define __CLAPTRAP_H__
 
 # include	<string>
+# include	<iostream>
 
 class ClapTrap
 {

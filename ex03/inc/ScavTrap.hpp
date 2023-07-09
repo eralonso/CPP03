@@ -6,7 +6,7 @@
 /*   By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:43:58 by eralonso          #+#    #+#             */
-/*   Updated: 2023/07/08 16:50:27 by eralonso         ###   ########.fr       */
+/*   Updated: 2023/07/09 10:41:56 by eralonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@
 
 class ScavTrap: virtual public ClapTrap
 {
+	protected:
+		static const int	def_hpts = 100;
+		static const int	def_epts = 50;
+		static const int	def_admg = 20;
 	public:
 		ScavTrap( void );
 		ScavTrap( std::string name );

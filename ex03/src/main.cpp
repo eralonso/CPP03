@@ -6,7 +6,7 @@
 /*   By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 12:37:03 by eralonso          #+#    #+#             */
-/*   Updated: 2023/07/08 17:43:44 by eralonso         ###   ########.fr       */
+/*   Updated: 2023/07/09 13:01:10 by eralonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,18 @@ void	attacking( ClapTrap& clap1, ClapTrap& clap2 )
 		clap2.takeDamage( clap1.getADmg() );
 }
 
-void	test_clap( ClapTrap& one, ClapTrap& two, bool change_dmg )
+void	war( ClapTrap& one, ClapTrap& two, int times )
 {
-	attacking( one, two );
-	attacking( two, one );
+	for ( int i = 0; i < times; i++ )
+	{
+		attacking( one, two );
+		attacking( two, one );
+	}
+}
+
+void	test( ClapTrap& one, ClapTrap& two, bool change_dmg )
+{
+	war( one, two, 1 );
 	if ( change_dmg == true )
 		one.setADmg( 1 );
 	attacking( one, two );
@@ -49,25 +57,13 @@ void	test_clap( ClapTrap& one, ClapTrap& two, bool change_dmg )
 	two.beRepaired( one.getADmg() * 10 );
 	std::cout << std::endl;
 	attacking( two, one );
-	attacking( one, two );
-	attacking( two, one );
+	war( one, two, 1 );
 	if ( change_dmg == true )
 	{
 		one.setADmg( 1 );
 		two.setADmg( 1 );
 	}
-	attacking( one, two );
-	attacking( two, one );
-	attacking( one, two );
-	attacking( two, one );
-	attacking( one, two );
-	attacking( two, one );
-	attacking( one, two );
-	attacking( two, one );
-	attacking( one, two );
-	attacking( two, one );
-	attacking( one, two );
-	attacking( two, one );
+	war( one, two, 6 );
 	std::cout << "\none -> " << one << std::endl;
 	std::cout << "two -> " << two << std::endl;
 }
@@ -87,69 +83,77 @@ void	print_next_test( std::string msg )
 	std::cout << "|" << std::setfill('_') << std::setw(FILL + 1) << "|\n" << std::endl;
 }
 
-void	test_scav( ScavTrap& one, ScavTrap& two )
+void	test_clap( void )
 {
-	test_clap( one, two, false );
-	std::cout << std::endl;
-	one.guardGate();
-	two.guardGate();
-}
-
-void	test_frag( FragTrap& one, FragTrap& two )
-{
-	test_clap( one, two, false );
-	std::cout << std::endl;
-	one.highFivesGuys();
-	two.highFivesGuys();
-}
-
-void	test_diamond( DiamondTrap& one, DiamondTrap& two )
-{
-	std::cout << "\none -> " << one << std::endl;
-	std::cout << "two -> " << two << "\n" << std::endl;
-	test_clap( one, two, false );
-	std::cout << std::endl;
-	one.whoAmI();
-	two.whoAmI();
-}
-
-int	main( void )
-{
-	print_next_test( "ClapTrap test" );
 	ClapTrap	clap1( "clap1" );
 	ClapTrap	clap2( clap1 );
 
 	clap2.setName( "clap2" );
-	test_clap( clap1, clap2, true );
+	std::cout << "\none -> " << clap1 << std::endl;
+	std::cout << "two -> " << clap2 << "\n" << std::endl;
+	test( clap1, clap2, true );
+	std::cout << std::endl;
+}
 
-
-
-	print_next_test( "ScravTrap test" );
+void	test_scav( void )
+{
 	ScavTrap	scav1;
 	ScavTrap	scav2( "scav2" );
 
 	scav1 = scav2;
 	scav1.setName( "scav1" );
-	test_scav( scav1, scav2 );
+	std::cout << "\none -> " << scav1 << std::endl;
+	std::cout << "two -> " << scav2 << "\n" << std::endl;
+	test( scav1, scav2, false );
+	std::cout << std::endl;
+	scav1.guardGate();
+	scav2.guardGate();
+	std::cout << std::endl;
+}
 
-
-
-	print_next_test( "FragTrap test" );
+void	test_frag( void )
+{
 	FragTrap	frag1( "frag1" );
 	FragTrap	frag2;
 
 	frag2 = frag1;
 	frag2.setName( "frag2" );
-	test_frag( frag1, frag2 );
+	std::cout << "\none -> " << frag1 << std::endl;
+	std::cout << "two -> " << frag2 << "\n" << std::endl;
+	test( frag1, frag2, false );
+	std::cout << std::endl;
+	frag1.highFivesGuys();
+	frag2.highFivesGuys();
+	std::cout << std::endl;
+}
 
-
-
-	print_next_test( "DiamondTrap test" );
+void	test_diamond( void )
+{
 	DiamondTrap	diamond1( "diamond1" );
 	DiamondTrap	diamond2( "diamond2" );
 
-	test_diamond( diamond1, diamond2 );
-
+	std::cout << "\none -> " << diamond1 << std::endl;
+	std::cout << "two -> " << diamond2 << "\n" << std::endl;
+	test( diamond1, diamond2, false );
 	std::cout << std::endl;
+	diamond1.whoAmI();
+	diamond2.whoAmI();
+	std::cout << std::endl;
+}
+
+int	main( void )
+{
+	print_next_test( "ClapTrap test" );
+	test_clap();
+
+	print_next_test( "ScravTrap test" );
+	test_scav();
+
+	print_next_test( "FragTrap test" );
+	test_frag();
+
+	print_next_test( "DiamondTrap test" );
+	test_diamond();
+
 	return ( 0 );
 }

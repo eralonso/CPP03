@@ -6,40 +6,40 @@
 /*   By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 14:51:24 by eralonso          #+#    #+#             */
-/*   Updated: 2023/07/08 16:42:20 by eralonso         ###   ########.fr       */
+/*   Updated: 2023/07/09 10:58:30 by eralonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"FragTrap.hpp"
 
-FragTrap::FragTrap( void ): ClapTrap( "Unnamed", 100, 100, 30 )
+FragTrap::FragTrap( void ): ClapTrap( "Unnamed", FragTrap::def_hpts, FragTrap::def_epts, FragTrap::def_admg )
 {
-	std::cout << "FragTrap -> " << this->_name << ": Default constructor called" << std::endl;
+	std::cout << "FragTrap -> " << this->getName() << ": Default constructor called" << std::endl;
 }
 
-FragTrap::FragTrap( std::string name ): ClapTrap(name, 100, 100, 30)
+FragTrap::FragTrap( std::string name ): ClapTrap( name, FragTrap::def_hpts, FragTrap::def_epts, FragTrap::def_admg )
 {
-	std::cout << "FragTrap -> " << this->_name << ": Default constructor called" << std::endl;
+	std::cout << "FragTrap -> " << this->getName() << ": String constructor called" << std::endl;
 }
 
-FragTrap::FragTrap( const FragTrap& frag )
+FragTrap::FragTrap( const FragTrap& frag ): ClapTrap( frag )
 {
-	std::cout << "FragTrap -> " << this->_name << ": Copy constructor called" << std::endl;
+	std::cout << "FragTrap -> " << frag.getName() << ": Copy constructor called" << std::endl;
 	*this = frag;
 }
 
 FragTrap::~FragTrap( void )
 {
-	std::cout << "FragTrap -> " << this->_name << ": Default destructor called" << std::endl;
+	std::cout << "FragTrap -> " << this->getName() << ": Destructor called" << std::endl;
 }
 
 FragTrap&	FragTrap::operator=( const FragTrap& frag )
 {
-	std::cout << "FragTrap -> " << this->_name << ": Assignation operator called" << std::endl;
-	this->_name = frag.getName();
-	this->_hPts = frag.getHPts();
-	this->_ePts = frag.getEPts();
-	this->_aDmg = frag.getADmg();
+	std::cout << "FragTrap -> " << frag.getName() << ": Assignation operator called" << std::endl;
+	this->setName( frag.getName() );
+	this->setHPts( frag.getHPts() );
+	this->setEPts( frag.getEPts() );
+	this->setADmg( frag.getADmg() );
 	return ( *this );
 }
 
@@ -47,7 +47,7 @@ void	FragTrap::highFivesGuys( void )
 {
 	std::string	unused;
 
-	std::cout << "FragTrap -> " << this->_name << ": Hey guys, High five" << std::endl;
+	std::cout << "FragTrap -> " << this->getName() << ": Hey guys, High five" << std::endl;
 	std::getline(std::cin, unused);
 }
 

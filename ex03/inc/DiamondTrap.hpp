@@ -6,7 +6,7 @@
 /*   By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 16:48:38 by eralonso          #+#    #+#             */
-/*   Updated: 2023/07/08 17:37:54 by eralonso         ###   ########.fr       */
+/*   Updated: 2023/07/09 10:44:11 by eralonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ class DiamondTrap: public ScavTrap, public FragTrap
 {
 	private:
 		std::string	_name;
+		void		setClapTrapName( std::string name );
 	public:
 		DiamondTrap( void );
 		DiamondTrap( std::string name );
@@ -32,7 +33,6 @@ class DiamondTrap: public ScavTrap, public FragTrap
 		std::string		getName( void ) const;
 		std::string		getClapTrapName( void ) const;
 		void			setName( std::string name );
-		void			setClapTrapName( std::string name );
 };
 
 std::ostream&	operator<<( std::ostream& out, DiamondTrap& diamond );

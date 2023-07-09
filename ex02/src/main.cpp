@@ -6,7 +6,7 @@
 /*   By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 12:37:03 by eralonso          #+#    #+#             */
-/*   Updated: 2023/07/08 16:26:14 by eralonso         ###   ########.fr       */
+/*   Updated: 2023/07/09 13:33:34 by eralonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,18 @@ void	attacking( ClapTrap& clap1, ClapTrap& clap2 )
 		clap2.takeDamage( clap1.getADmg() );
 }
 
-void	test_clap( ClapTrap& one, ClapTrap& two, bool change_dmg )
+void	war( ClapTrap& one, ClapTrap& two, int times )
 {
-	attacking( one, two );
-	attacking( two, one );
+	for ( int i = 0; i < times; i++ )
+	{
+		attacking( one, two );
+		attacking( two, one );
+	}
+}
+
+void	test( ClapTrap& one, ClapTrap& two, bool change_dmg )
+{
+	war( one, two, 1 );
 	if ( change_dmg == true )
 		one.setADmg( 1 );
 	attacking( one, two );
@@ -48,25 +56,13 @@ void	test_clap( ClapTrap& one, ClapTrap& two, bool change_dmg )
 	two.beRepaired( one.getADmg() * 10 );
 	std::cout << std::endl;
 	attacking( two, one );
-	attacking( one, two );
-	attacking( two, one );
+	war( one, two, 1 );
 	if ( change_dmg == true )
 	{
 		one.setADmg( 1 );
 		two.setADmg( 1 );
 	}
-	attacking( one, two );
-	attacking( two, one );
-	attacking( one, two );
-	attacking( two, one );
-	attacking( one, two );
-	attacking( two, one );
-	attacking( one, two );
-	attacking( two, one );
-	attacking( one, two );
-	attacking( two, one );
-	attacking( one, two );
-	attacking( two, one );
+	war( one, two, 6 );
 	std::cout << "\none -> " << one << std::endl;
 	std::cout << "two -> " << two << std::endl;
 }
@@ -86,45 +82,60 @@ void	print_next_test( std::string msg )
 	std::cout << "|" << std::setfill('_') << std::setw(FILL + 1) << "|\n" << std::endl;
 }
 
-void	test_scav( ScavTrap& one, ScavTrap& two )
+void	test_clap( void )
 {
-	test_clap( one, two, false );
+	ClapTrap	clap1( "clap1" );
+	ClapTrap	clap2( clap1 );
+
+	clap2.setName( "clap2" );
+	std::cout << "\none -> " << clap1 << std::endl;
+	std::cout << "two -> " << clap2 << "\n" << std::endl;
+	test( clap1, clap2, true );
 	std::cout << std::endl;
-	one.guardGate();
-	two.guardGate();
 }
 
-void	test_frag( FragTrap& one, FragTrap& two )
+void	test_scav( void )
 {
-	test_clap( one, two, false );
+	ScavTrap	scav1;
+	ScavTrap	scav2( "scav2" );
+
+	scav1 = scav2;
+	scav1.setName( "scav1" );
+	std::cout << "\none -> " << scav1 << std::endl;
+	std::cout << "two -> " << scav2 << "\n" << std::endl;
+	test( scav1, scav2, false );
 	std::cout << std::endl;
-	one.highFivesGuys();
-	two.highFivesGuys();
+	scav1.guardGate();
+	scav2.guardGate();
+	std::cout << std::endl;
+}
+
+void	test_frag( void )
+{
+	FragTrap	frag1( "frag1" );
+	FragTrap	frag2;
+
+	frag2 = frag1;
+	frag2.setName( "frag2" );
+	std::cout << "\none -> " << frag1 << std::endl;
+	std::cout << "two -> " << frag2 << "\n" << std::endl;
+	test( frag1, frag2, false );
+	std::cout << std::endl;
+	frag1.highFivesGuys();
+	frag2.highFivesGuys();
+	std::cout << std::endl;
 }
 
 int	main( void )
 {
-	ClapTrap	clap1( "clap1" );
-	ClapTrap	clap2( clap1 );
-	ScavTrap	scav1;
-	ScavTrap	scav2( "scav2" );
-	FragTrap	frag1( "frag1" );
-	FragTrap	frag2;
-
-	clap2.setName( "clap2" );
 	print_next_test( "ClapTrap test" );
-	test_clap( clap1, clap2, true );
+	test_clap();
 
 	print_next_test( "ScravTrap test" );
-	scav1 = scav2;
-	scav1.setName( "scav1" );
-	test_scav( scav1, scav2 );
+	test_scav();
 
 	print_next_test( "FragTrap test" );
-	frag2 = frag1;
-	frag2.setName( "frag2" );
-	test_frag( frag1, frag2 );
+	test_frag();
 
-	std::cout << std::endl;
 	return ( 0 );
 }

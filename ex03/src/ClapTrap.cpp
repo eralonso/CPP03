@@ -6,7 +6,7 @@
 /*   By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 11:10:59 by eralonso          #+#    #+#             */
-/*   Updated: 2023/07/08 17:54:59 by eralonso         ###   ########.fr       */
+/*   Updated: 2023/07/09 11:38:43 by eralonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 ClapTrap::ClapTrap( void ): _name( "Unnamed" ), _hPts( 10 ), _ePts( 10 ), _aDmg( 0 )
 {
-	std::cout << "ClapTrap -> " << this->_name << ": Default constructor called" << std::endl;
+	std::cout << "ClapTrap -> " << this->getName() << ": Default constructor called" << std::endl;
 }
 
 ClapTrap::ClapTrap( const ClapTrap& clap )
@@ -27,23 +27,23 @@ ClapTrap::ClapTrap( const ClapTrap& clap )
 ClapTrap::ClapTrap( std::string name, unsigned int hPts, unsigned int ePts, \
 	unsigned int aDmg ): _name( name ), _hPts( hPts ), _ePts( ePts ), _aDmg( aDmg )
 {
-	std::cout << "ClapTrap -> " << this->_name << ": All parameters constructor " << std::endl;
+	std::cout << "ClapTrap -> " << this->getName() << ": All parameters constructor " << std::endl;
 }
 
 ClapTrap::ClapTrap( std::string name ): _name( name ), _hPts( 10 ), \
 	_ePts( 10 ), _aDmg( 0 )
 {
-	std::cout << "ClapTrap -> " << this->_name << ": String constructor called" << std::endl;
+	std::cout << "ClapTrap -> " << this->getName() << ": String constructor called" << std::endl;
 }
 
 ClapTrap::~ClapTrap( void )
 {
-	std::cout << "ClapTrap -> " << this->_name << ": Destructor called" << std::endl;
+	std::cout << "ClapTrap -> " << this->getName() << ": Destructor called" << std::endl;
 }
 
 ClapTrap&	ClapTrap::operator=( const ClapTrap& clap )
 {
-	std::cout << "Assignation operator called" << std::endl;
+	std::cout << "ClapTrap -> " << clap.getName() << ": Assignation operator called" << std::endl;
 	this->setName( clap.getName() );
 	this->setHPts( clap.getHPts() );
 	this->setEPts( clap.getEPts() );

@@ -13,17 +13,17 @@
 #include	<iostream>
 #include	"ScavTrap.hpp"
 
-ScavTrap::ScavTrap( void ): ClapTrap("unnamed", 100, 50, 20)
+ScavTrap::ScavTrap( void ): ClapTrap( "Unnamed", ScavTrap::def_hpts, ScavTrap::def_epts, ScavTrap::def_admg )
 {
 	std::cout << "ScavTrap -> " << this->getName() << ": Default constructor called" << std::endl;
 }
 
-ScavTrap::ScavTrap( std::string name ): ClapTrap(name, 100, 50, 20)
+ScavTrap::ScavTrap( std::string name ): ClapTrap( name, ScavTrap::def_hpts, ScavTrap::def_epts, ScavTrap::def_admg )
 {
-	std::cout << "ScavTrap -> " << this->getName() << ": Default constructor called" << std::endl;
+	std::cout << "ScavTrap -> " << this->getName() << ": String constructor called" << std::endl;
 }
 
-ScavTrap::ScavTrap( const ScavTrap& scav )
+ScavTrap::ScavTrap( const ScavTrap& scav ): ClapTrap( scav )
 {
 	std::cout << "ScavTrap -> " << this->getName() << ": Copy constructor called" << std::endl;
 	*this = scav;
@@ -31,7 +31,7 @@ ScavTrap::ScavTrap( const ScavTrap& scav )
 
 ScavTrap::~ScavTrap( void )
 {
-	std::cout << "ScavTrap -> " << this->getName() << ": Default destructor called" << std::endl;
+	std::cout << "ScavTrap -> " << this->getName() << ": Destructor called" << std::endl;
 }
 
 ScavTrap&	ScavTrap::operator=( const ScavTrap& scav )

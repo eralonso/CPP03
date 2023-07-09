@@ -6,23 +6,23 @@
 /*   By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 14:51:24 by eralonso          #+#    #+#             */
-/*   Updated: 2023/07/08 18:01:37 by eralonso         ###   ########.fr       */
+/*   Updated: 2023/07/09 10:58:30 by eralonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"FragTrap.hpp"
 
-FragTrap::FragTrap( void ): ClapTrap( "Unnamed", 100, 100, 30 )
+FragTrap::FragTrap( void ): ClapTrap( "Unnamed", FragTrap::def_hpts, FragTrap::def_epts, FragTrap::def_admg )
 {
 	std::cout << "FragTrap -> " << this->getName() << ": Default constructor called" << std::endl;
 }
 
-FragTrap::FragTrap( std::string name ): ClapTrap(name, 100, 100, 30)
+FragTrap::FragTrap( std::string name ): ClapTrap( name, FragTrap::def_hpts, FragTrap::def_epts, FragTrap::def_admg )
 {
-	std::cout << "FragTrap -> " << this->getName() << ": Default constructor called" << std::endl;
+	std::cout << "FragTrap -> " << this->getName() << ": String constructor called" << std::endl;
 }
 
-FragTrap::FragTrap( const FragTrap& frag )
+FragTrap::FragTrap( const FragTrap& frag ): ClapTrap( frag )
 {
 	std::cout << "FragTrap -> " << frag.getName() << ": Copy constructor called" << std::endl;
 	*this = frag;
@@ -30,7 +30,7 @@ FragTrap::FragTrap( const FragTrap& frag )
 
 FragTrap::~FragTrap( void )
 {
-	std::cout << "FragTrap -> " << this->getName() << ": Default destructor called" << std::endl;
+	std::cout << "FragTrap -> " << this->getName() << ": Destructor called" << std::endl;
 }
 
 FragTrap&	FragTrap::operator=( const FragTrap& frag )
